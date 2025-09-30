@@ -19,43 +19,47 @@ const FriendsPanel = ({ userId }: FriendsPanelProps) => {
   const [friends, setFriends] = useState<Friend[]>([]);
   const [showAddDialog, setShowAddDialog] = useState(false);
 
+  const mockFriends: Friend[] = [
+    { id: "1", name: "Alice", completion_percentage: 75 },
+    { id: "2", name: "Bob", completion_percentage: 50 },
+    { id: "3", name: "Charlie", completion_percentage: 90 },
+  ];  
   useEffect(() => {
-    if (!userId) return;
 
-    const fetchFriends = async () => {
-      const { data: friendships } = await supabase
-        .from("friendships")
-        .select("friend_id")
-        .eq("user_id", userId);
+    // const fetchFriends = async () => {
+    //   const { data: friendships } = await supabase
+    //     .from("friendships")
+    //     .select("friend_id")
+    //     .eq("user_id", userId);
 
-      if (!friendships) return;
+    //   if (!friendships) return;
 
-      const friendsData: Friend[] = [];
-      for (const friendship of friendships) {
-        const { data: profile } = await supabase
-          .from("profiles")
-          .select("id, name, avatar_url")
-          .eq("id", friendship.friend_id)
-          .single();
+    //   const friendsData: Friend[] = [];
+    //   for (const friendship of friendships) {
+    //     const { data: profile } = await supabase
+    //       .from("profiles")
+    //       .select("id, name, avatar_url")
+    //       .eq("id", friendship.friend_id)
+    //       .single();
 
-        if (profile) {
-          const { data: statsData } = await supabase.rpc(
-            "get_friend_stats",
-            { friend_user_id: profile.id }
-          );
+    //     if (profile) {
+    //       const { data: statsData } = await supabase.rpc(
+    //         "get_friend_stats",
+    //         { friend_user_id: profile.id }
+    //       );
 
-          friendsData.push({
-            ...profile,
-            completion_percentage: statsData?.[0]?.completion_percentage || 0,
-          });
-        }
-      }
+    //       friendsData.push({
+    //         ...profile,
+    //         completion_percentage: statsData?.[0]?.completion_percentage || 0,
+    //       });
+    //     }
+    //   }
 
-      setFriends(friendsData);
-    };
+      setFriends(mockFriends);
+    },
 
-    fetchFriends();
-  }, [userId]);
+    //fetchFriends();
+  []);
 
   return (
     <>

@@ -3,6 +3,7 @@ CREATE TABLE public.profiles (
   id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
   name TEXT NOT NULL,
   avatar_url TEXT,
+  email TEXT UNIQUE,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
@@ -171,7 +172,6 @@ BEGIN
   );
   RETURN NEW;
 END;
-$$;
 
 -- Trigger to create profile on user signup
 CREATE TRIGGER on_auth_user_created

@@ -25,19 +25,59 @@ const AddFriendDialog = ({ userId, open, onOpenChange, onFriendAdded }: AddFrien
     setLoading(true);
 
     try {
-      // Find user by email (we need to query profiles since we can't access auth.users directly)
-      const { data: profiles } = await supabase
+      // Find user by email
+      const { data: profiles, error: profileError } = await supabase
         .from("profiles")
         .select("id")
+        .eq("email", email)
         .limit(1);
 
-      // For now, we'll just show a message since we can't query by email directly
-      // In a real app, you'd have a separate friends request system
+      if (profileError) throw profileError;
+      if (!profiles || profiles.length === 0) {
+        toast({
+          title: "Usuário não encontrado",
+          description: "Nenhum usuário com esse e-mail foi encontrado.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      const friendId = profiles[0].id;
+      if (friendId === userId) {
+        toast({
+          title: "Não é possível adicionar a si mesmo",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Check if already friends
+      const { data: existing, error: existingError } = await supabase
+        .from("friendships")
+        .select("id")
+        .eq("user_id", userId)
+        .eq("friend_id", friendId)
+        .limit(1);
+      if (existingError) throw existingError;
+      if (existing && existing.length > 0) {
+        toast({
+          title: "Já é seu amigo",
+          description: "Esse usuário já está na sua lista de amigos.",
+        });
+        return;
+      }
+
+      // Add friendship
+      const { error: insertError } = await supabase
+        .from("friendships")
+        .insert({ user_id: userId, friend_id: friendId });
+      if (insertError) throw insertError;
+
       toast({
-        title: "Funcionalidade em desenvolvimento",
-        description: "Em breve você poderá adicionar amigos pelo email!",
+        title: "Amigo adicionado!",
+        description: "O usuário foi adicionado à sua lista de amigos.",
       });
-      
+      onFriendAdded();
     } catch (error: any) {
       toast({
         title: "Erro",

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Play, Pause, CheckCircle2 } from "lucide-react";
+import SubtaskTodoList from "./SubtaskTodoList";
 
 interface Task {
   id: string;
@@ -130,6 +131,8 @@ const TaskTimerDialog = ({ task, open, onOpenChange }: TaskTimerDialogProps) => 
               Tempo gasto: {task.total_spent_minutes} min / {task.total_estimated_minutes} min estimado
             </p>
           </div>
+
+          <SubtaskTodoList taskId={task.id} />
 
           <div className="flex gap-3">
             {!isRunning ? (

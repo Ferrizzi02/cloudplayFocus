@@ -1,4 +1,4 @@
-# Cloudplay
+<img width="1861" height="914" alt="image" src="https://github.com/user-attachments/assets/967dbfd9-f539-4808-bb81-e8edf9736ca9" /># Cloudplay
 
 **Cloudplay** é uma plataforma criada para ajudar estudantes que lutam contra a procrastinação, tornando o início e a conclusão das tarefas mais fáceis e motivadores.
 
@@ -21,3 +21,6 @@ O **Cloudplay** está hospedado na **Magalu Cloud**, permitindo acesso remoto de
 
 - **Banco de Dados**: feito com Supabase, é responsável por armazenar com segurança os dados dos usuários.  
 - **Frontend**: feito em React com Vite e Tailwind.
+
+## Vídeo do Site em Funcionamento
+[Video do Cloudplay Focus!](https://drive.google.com/file/d/1AnVJj5sVhoWHp4nMQqPVyLYBm1CjJNHX/view?usp=sharing)

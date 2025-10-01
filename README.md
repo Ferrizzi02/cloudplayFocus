@@ -1,4 +1,4 @@
-<img width="1861" height="914" alt="image" src="https://github.com/user-attachments/assets/967dbfd9-f539-4808-bb81-e8edf9736ca9" /># Cloudplay
+# Cloudplay
 
 **Cloudplay** é uma plataforma criada para ajudar estudantes que lutam contra a procrastinação, tornando o início e a conclusão das tarefas mais fáceis e motivadores.
 

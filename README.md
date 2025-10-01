@@ -2,7 +2,7 @@
 
 **Cloudplay** é uma plataforma criada para ajudar estudantes que lutam contra a procrastinação, tornando o início e a conclusão das tarefas mais fáceis e motivadores.
 
-> O começo é a parte mais importante do trabalho.
+> "O começo é a parte mais importante do trabalho."
 > - Platão
 
 ## Funcionamento
@@ -19,4 +19,5 @@ Permite acompanhar as atividades dos amigos, criando um ambiente de motivação 
 
 O **Cloudplay** está hospedado na **Magalu Cloud**, permitindo acesso remoto de qualquer lugar do mundo.  
 
-- **Banco de Dados**: responsável por armazenar com segurança os dados dos usuários.  
+- **Banco de Dados**: feito com Supabase, é responsável por armazenar com segurança os dados dos usuários.  
+- **Frontend**: feito em React com Vite e Tailwind.

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { User } from "@supabase/supabase-js";
+
 import { useToast } from "@/hooks/use-toast";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
 import StatsPanel from "@/components/dashboard/StatsPanel";
@@ -78,7 +79,7 @@ const Dashboard = () => {
             <div className="bg-card rounded-3xl p-6 shadow-card">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-2xl font-bold text-card-foreground">
-                  Bem vindo, Usuário! Pronto para decolar?
+                  Bem-vindo(a)! Pronto(a) para decolar?
                 </h2>
                 <AddTaskDialog userId={user?.id} />
               </div>
